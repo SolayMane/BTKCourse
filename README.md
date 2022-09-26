@@ -42,7 +42,8 @@ taxon:
 2. Run the following command:
 ````bash
 blobtools create --fasta /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
---meta asm.yaml  --taxid 75913     --taxdump /home1/software/blobtoolkit/taxdump Deconta_asm/
+--meta asm.yaml  --taxid 75913 \
+--taxdump /home1/software/blobtoolkit/taxdump Deconta_asm/
 ````
 
 

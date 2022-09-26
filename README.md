@@ -101,6 +101,8 @@ busco -i /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-n
 blobtools add --busco busco/112-name.asco/run_helotiales_odb10/full_table.tsv Deconta_asm/
 ````
 ### View the project on blobtool viewer
+1. Run the following command to initialize the viewer
 ````bash
 blobtools view --remote Deconta_asm/
 ````
+2. Open your browser and go the URL indicated in the previous command (e.g http://localhost:8001/view/Deconta_asm)

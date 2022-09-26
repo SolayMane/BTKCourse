@@ -1,4 +1,8 @@
 # BTKCourse
+##BlobToolKit (v3.3.0) instaltion 
+pip install blobtoolkit
+
+
 This reposotory contains all codes used to analyse the Botrytis genome assemblies
 ## The rawd reads were trimmed suing sickle
 ## The trimmed reads were then assembled using clc genomics

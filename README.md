@@ -105,4 +105,4 @@ blobtools add --busco busco/112-name.asco/run_helotiales_odb10/full_table.tsv De
 ````bash
 blobtools view --remote Deconta_asm/
 ````
-2. Open your browser and go the URL indicated in the previous command (e.g http://localhost:8001/view/Deconta_asm)
+2. Open your browser and go to the URL indicated in the previous command (e.g http://localhost:8001/view/Deconta_asm)

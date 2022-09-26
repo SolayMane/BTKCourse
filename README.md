@@ -78,7 +78,7 @@ blobtools add --hits asm.ncbi.blastn.out \
 --hits asm.diamond.blastx.out \
 --taxrule bestsumorder \
 --taxdump /home1/software/blobtoolkit/taxdump Deconta_asm/
-
+````
 ### Adding Coverage
 1. Run minimap:
 ````bash

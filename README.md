@@ -1,6 +1,6 @@
 # BTKCourse
-## BlobToolKit (v3.3.0) installation 
-pip install blobtoolkit
+## BlobToolKit (v3.3.0) instaltion 
+<code>pip install blobtoolkit</code>
 
 
 This reposotory contains all codes used to analyse the Botrytis genome assemblies

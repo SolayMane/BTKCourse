@@ -1,5 +1,5 @@
 # BTKCourse
-## BlobToolKit (v3.3.0) instaltion 
+## BlobToolKit (v3.3.0) installation 
 pip install blobtoolkit
 
 

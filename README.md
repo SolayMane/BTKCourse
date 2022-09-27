@@ -2,60 +2,58 @@
 ## BlobToolKit (v3.3.0) instaltion 
 <code>pip install blobtoolkit</code>
 
+## Demo on BTK
+```mermaid
+graph TB
+subgraph CASE 2
+    er(Raw Reads) -->|extracte target reads| aa(Newdenovo assembly)
+    aa -- <i>Blobtoolkit --> t(Clean Assembly)
+   
+  end
+  subgraph CASE 1
+    tt(Raw Reads) --> a
+    a[denovo assembly] -- <i>Blobtoolkit --> b(Contaminated assembly!)
 
-This reposotory contains all codes used to analyse the Botrytis genome assemblies
-## The rawd reads were trimmed suing sickle
-## The trimmed reads were then assembled using clc genomics
-## The 112-name assembly was assesed using blobtoolkit --> suspected contaminatioinn from bacetria!!
-## I have used kraken to extracte only the Ascomycota reads and taxid children 
-````bash
-kraken2 --db /sanhome2/Comparative_genomics/Vcovid19/kraken-VBE-DB/ \
---threads 56 \
---report kraken/ngs.report  \
---paired trimmed/112-name.trim.R1.fastq.gz trimmed/112-name.trim.R2.fastq.gz >> kraken/112-name.kraken
-
-extract_kraken_reads.py -k 112-name.kraken --include-children -t 4890 \
--s ../Assembly/trimmed/112-name.trim.R1.fastq.gz \
--s2 ../Assembly/trimmed/112-name.trim.R2.fastq.gz \
--o 112-name.trim.asco.R1.fastq.gz \
--o2 112-name.trim.asco.R2.fastq.gz \
--r ngs.report \
---max 10000000000 \
---fastq-output
-
-````
-
-## I reassembled the extracted reads to asses the assembly using blobtoolkit
+    a --> zz(Clean Assembly!)
+    b -->|filter| EE(target group contigs)
+  end
+  
+        classDef green fill:#93FF33,stroke:#333,stroke-width:2px
+        classDef blue fill:#00FA9A,stroke:#333,stroke-width:4px
+       
+        class g,a,h green
+        class b,c,d,e,f blue
+ ```      
 
 ## Adding data to a dataset (Create blobtoolkit project)
-### Create a metadata file
-1. Create yaml file to describe the project:
+### 1. Create a metadata file
+1. Create a project directory
+````bash
+sudo mkdir ~/btk/
+````
+2. Create yaml file to describe the project:
 ````bash
 vim ~/fistrAssembly.yaml
 ````
 ````bash
 assembly:
-  accession: GCA_001028725.1
-  alias: S_venezuelensis_HH1
-  bioproject: PRJEB530
-  biosample: AMD00012916
+  alias: B_cinera_112
   record_type: contig
 taxon:
-  name: Strongyloides venezuelensis
+  name: Botrytis cinerea
 ````
-2. Run the following command:
+3. Run the following command to creat btk directory project
 ````bash
-blobtools create --fasta /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
---meta asm.yaml  --taxid 75913 \
---taxdump /home1/software/blobtoolkit/taxdump Deconta_asm/
+blobtools create --fasta ~/mygenome.fasta \
+--meta ~/fistrAssembly.yaml  --taxid 75913 \
+--taxdump /home1/software/blobtoolkit/taxdump ~/btk
 ````
 
-
-### Adding hits
+### 2. Adding hits
 1. Run the blastn: 
 ````bash
 blastn -db /home1/software/blobtoolkit/nt/nt \
--query /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
+-query ~/mygenome.fasta \
 -outfmt "6 qseqid staxids bitscore std" \
 -max_target_seqs 10 -max_hsps 1 \
 -evalue 1e-25 -num_threads 56 \
@@ -64,7 +62,7 @@ blastn -db /home1/software/blobtoolkit/nt/nt \
 
 2. Run diamond:
 ````bash
-diamond blastx --query /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa\
+diamond blastx --query ~/mygenome.fasta \
 --db /home1/software/blobtoolkit/uniprot/reference_proteomes.dmnd \
 --outfmt 6 qseqid staxids bitscore qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore \
 --sensitive --max-target-seqs 1 \
@@ -79,7 +77,7 @@ blobtools add --hits asm.ncbi.blastn.out \
 --taxrule bestsumorder \
 --taxdump /home1/software/blobtoolkit/taxdump Deconta_asm/
 ````
-### Adding Coverage
+### 3. Adding Coverage
 1. Run minimap:
 ````bash
 minimap2 -ax sr -t 56 /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
@@ -88,21 +86,21 @@ minimap2 -ax sr -t 56 /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC
 ````
 2. add coverage using blobtools command:
 ````bash
-blobtools add --cov asm.bam --threads 56 Deconta_asm/
+blobtools add --cov asm.bam --threads 56 ~/btk
 ```` 
-### Adding buscos
+### 4. Adding buscos
 1. Run busco on the genome assemlby 
 ````bash
-busco -i /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
+busco -i ~/mygenome.fasta \
 -l helotiales_odb10 -o 112-name.asco -m genome --cpu 56
 ````
 2. Add busco file using blobtolls command :
 ````bash
-blobtools add --busco busco/112-name.asco/run_helotiales_odb10/full_table.tsv Deconta_asm/
+blobtools add --busco busco/112-name.asco/run_helotiales_odb10/full_table.tsv ~/btk
 ````
-### View the project on blobtool viewer
+### 5. View the project on blobtool viewer
 1. Run the following command to initialize the viewer
 ````bash
-blobtools view --remote Deconta_asm/
+blobtools view --remote ~/btk
 ````
-2. Open your browser and go to the URL indicated in the previous command (e.g http://localhost:8001/view/Deconta_asm)
+2. Open your browser and go to the URL indicated in the previous command (e.g http://localhost:8001/view/btk)

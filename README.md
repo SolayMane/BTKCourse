@@ -1,6 +1,15 @@
 # BTKCourse
 ## BlobToolKit (v3.3.0) instaltion 
-<code>pip install blobtoolkit</code>
+
+````bash
+pip install blobtoolkit
+````
+
+The blobtools viewcommand requires firefox or a chromium-based browser to start the interactive viewer or to generate plots from the command line, these can be installed with:
+
+````bash
+conda install -c conda-forge firefox geckodriver
+````
 
 ## Demo on BTK
 ```mermaid

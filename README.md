@@ -33,17 +33,57 @@ subgraph CASE 2
         class g,a,h green
         class b,c,d,e,f blue
  ```      
+## Databases
+# 1. Fetch the NCBI Taxdump
+````bash
+mkdir -p taxdump;
+cd taxdump;
+curl -L ftp://ftp.ncbi.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz | tar xzf -;
+cd ..;
+````
+# 2. Fetch the nt database
+
+````bash
+mkdir -p nt
+wget "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz" -P nt/ && \
+        for file in nt/*.tar.gz; \
+            do tar xf $file -C nt && rm $file; \
+        done
+````
+# 3. Fetch and format the UniProt database
+
+````bash
+mkdir -p uniprot
+wget -q -O uniprot/reference_proteomes.tar.gz \
+ ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/reference_proteomes/$(curl \
+     -vs ftp.ebi.ac.uk/pub/databases/uniprot/current_release/knowledgebase/reference_proteomes/ 2>&1 | \
+     awk '/tar.gz/ {print $9}')
+cd uniprot
+tar xf reference_proteomes.tar.gz
+
+touch reference_proteomes.fasta.gz
+find . -mindepth 2 | grep "fasta.gz" | grep -v 'DNA' | grep -v 'additional' | xargs cat >> reference_proteomes.fasta.gz
+
+echo -e "accession\taccession.version\ttaxid\tgi" > reference_proteomes.taxid_map
+zcat */*/*.idmapping.gz | grep "NCBI_TaxID" | awk '{print $1 "\t" $1 "\t" $3 "\t" 0}' >> reference_proteomes.taxid_map
+
+diamond makedb -p 16 --in reference_proteomes.fasta.gz --taxonmap reference_proteomes.taxid_map --taxonnodes ../taxdump/nodes.dmp -d reference_proteomes.dmnd
+cd -
+````
 
 ## Adding data to a dataset (Create blobtoolkit project)
 ### 1. Create a metadata file
 1. Create a project directory
 ````bash
-sudo mkdir ~/btk/
+mkdir btk
 ````
 2. Create yaml file to describe the project:
+
 ````bash
-vim ~/fistrAssembly.yaml
+vim Assembly.yaml
 ````
+Write the following information inside the yaml file. You download the Assembly.yaml from HERE.
+
 ````bash
 assembly:
   alias: B_cinera_112
@@ -51,10 +91,12 @@ assembly:
 taxon:
   name: Botrytis cinerea
 ````
+
 3. Run the following command to creat btk directory project
+
 ````bash
-blobtools create --fasta ~/mygenome.fasta \
---meta ~/fistrAssembly.yaml  --taxid 75913 \
+blobtools create --fasta Assembly.fasta \
+--meta Assembly.yaml  --taxid 75913 \
 --taxdump /home1/software/blobtoolkit/taxdump ~/btk
 ````
 
@@ -89,13 +131,13 @@ blobtools add --hits asm.ncbi.blastn.out \
 ### 3. Adding Coverage
 1. Run minimap:
 ````bash
-minimap2 -ax sr -t 56 /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
+minimap2 -ax sr -t 30 /sanhome2/Comparative_genomics/Botrytis/Assembly/denovoCLC/Contig_112-name.trim.asco.fa \
 ../kraken/112-name.trim.asco.R1.fastq ../kraken/112-name.trim.asco.R2.fastq \
-| samtools sort -@56 -O BAM -o asm.DRR008460.bam -
+| samtools sort -@30 -O BAM -o asm.DRR008460.bam -
 ````
 2. add coverage using blobtools command:
 ````bash
-blobtools add --cov asm.bam --threads 56 ~/btk
+blobtools add --cov asm.bam --threads 30 ~/btk
 ```` 
 ### 4. Adding buscos
 1. Run busco on the genome assemlby 

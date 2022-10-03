@@ -33,15 +33,15 @@ subgraph CASE 2
         class g,a,h green
         class b,c,d,e,f blue
  ```      
-## Databases
-# 1. Fetch the NCBI Taxdump
+## Fetch Databases
+### 1. Fetch the NCBI Taxdump
 ````bash
 mkdir -p taxdump;
 cd taxdump;
 curl -L ftp://ftp.ncbi.nih.gov/pub/taxonomy/new_taxdump/new_taxdump.tar.gz | tar xzf -;
 cd ..;
 ````
-# 2. Fetch the nt database
+### 2. Fetch the nt database
 
 ````bash
 mkdir -p nt
@@ -50,7 +50,7 @@ wget "ftp://ftp.ncbi.nlm.nih.gov/blast/db/nt.??.tar.gz" -P nt/ && \
             do tar xf $file -C nt && rm $file; \
         done
 ````
-# 3. Fetch and format the UniProt database
+### 3. Fetch and format the UniProt database
 
 ````bash
 mkdir -p uniprot
@@ -70,6 +70,10 @@ zcat */*/*.idmapping.gz | grep "NCBI_TaxID" | awk '{print $1 "\t" $1 "\t" $3 "\t
 diamond makedb -p 16 --in reference_proteomes.fasta.gz --taxonmap reference_proteomes.taxid_map --taxonnodes ../taxdump/nodes.dmp -d reference_proteomes.dmnd
 cd -
 ````
+## Create input files
+
+
+
 
 ## Adding data to a dataset (Create blobtoolkit project)
 ### 1. Create a metadata file

@@ -5,7 +5,7 @@
 pip install blobtoolkit
 ````
 
-The blobtools viewcommand requires firefox or a chromium-based browser to start the interactive viewer or to generate plots from the command line, these can be installed with:
+The blobtools viewc ommand requires firefox or a chromium-based browser to start the interactive viewer or to generate plots from the command line, these can be installed with:
 
 ````bash
 conda install -c conda-forge firefox geckodriver
@@ -16,14 +16,16 @@ conda install -c conda-forge firefox geckodriver
 graph TB
 subgraph CASE 2
     er(Raw Reads) -->|extracte target reads| aa(Newdenovo assembly)
-    aa -- <i>Blobtoolkit --> t(Clean Assembly)
+    aa -- <b>Blobtoolkit --> t(Clean Assembly)
    
   end
   subgraph CASE 1
     tt(Raw Reads) --> a
-    a[denovo assembly] -- <i>Blobtoolkit --> b(Contaminated assembly!)
+    a[denovo assembly] --> rr(<i>Blobtoolkit)
+    rr --> b(Contaminated assembly!)
+   
 
-    a --> zz(Clean Assembly!)
+    rr --> zz(Clean Assembly!)
     b -->|filter| EE(target group contigs)
   end
   

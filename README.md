@@ -88,7 +88,7 @@ cd -
 
 
 
-## Input file requirements
+## I. Input file requirements
 
 metadata file in yaml format, to describe the project e. g. B_cinera.yaml, Can be downloaded from HERE.
 one assembly file, e.g. assembly.fasta, Can be downloaded from HERE.
@@ -146,7 +146,7 @@ trimmed.R1.fastq trimmed.R2.fastq \
 | samtools sort -@30 -O BAM -o coverage.bam -
 ````
 
-### 3. Create a BUSCO summary file
+### 4. Create a BUSCO summary file
 
 Run busco on the genome assemlby 
 
@@ -154,38 +154,41 @@ Run busco on the genome assemlby
 busco -i assembly.fasta \
 -l helotiales_odb10 -o botrytis -m genome --cpu 30
 ````
+## II. adding input files to blobtoolkit project/database
 
 
-### 1. Create a metadata file
+### 1. adding assembly and a metadata files
 
 ````bash
-blobtools create --fasta Assembly.fasta \
---meta Assembly.yaml  --taxid 75913 \
---taxdump /home1/software/blobtoolkit/taxdump ~/btk
+blobtools create --fasta assembly.fasta \
+--meta B_cinera.yaml  --taxid 75913 \
+--taxdump ./taxdump/ ./btk
 ````
 
 ### 2. Adding hits
-3. Add hits with blobtools command:
+
 ````bash
-blobtools add --hits asm.ncbi.blastn.out \
---hits asm.diamond.blastx.out \
+blobtools add --hits blastn.out \
+--hits diamond.blastx.out \
 --taxrule bestsumorder \
---taxdump /home1/software/blobtoolkit/taxdump Deconta_asm/
+--taxdump ./taxdump/ ./btk
 ````
 ### 3. Adding Coverage
 
-2. add coverage using blobtools command:
 ````bash
-blobtools add --cov asm.bam --threads 30 ~/btk
+blobtools add --cov coverage.bam --threads 30 ./btk
 ```` 
 ### 4. Adding buscos
-2. Add busco file using blobtolls command :
+
 ````bash
-blobtools add --busco busco/112-name.asco/run_helotiales_odb10/full_table.tsv ~/btk
+blobtools add --busco ./botrytis/run_helotiales_odb10/full_table.tsv ./btk
+
 ````
-### 5. View the project on blobtool viewer
+### III. View the project on blobtool viewer
+
 1. Run the following command to initialize the viewer
+
 ````bash
-blobtools view --remote ~/btk
+blobtools view --remote ./btk
 ````
 2. Open your browser and go to the URL indicated in the previous command (e.g http://localhost:8001/view/btk)

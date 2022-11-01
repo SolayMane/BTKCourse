@@ -35,7 +35,20 @@ subgraph CASE 2
         class g,a,h green
         class b,c,d,e,f blue
  ```      
-
+# Workflow for working on you home made assembly!
+```mermaid
+graph TB
+    er(Create a metadata file) --> aa(blobdir)
+    a(Create a hit file) --> aa(blobdir)
+    b(Create a coverage file) --> aa(blobdir)
+    c(Create a BUSCO summary file) --> aa(blobdir)
+    aa -->| adding hits| x(View the dataset on blobtool viewer)
+        classDef green fill:#93FF33,stroke:#333,stroke-width:2px
+        classDef blue fill:#00FA9A,stroke:#333,stroke-width:4px
+       
+        class g,a,h green
+        class b,c,d,e,f blue
+ ```      
 
 ## Create a project directory
 

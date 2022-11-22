@@ -24,11 +24,24 @@ The blobtools view command requires firefox or a chromium-based browser to start
 conda install -c conda-forge firefox geckodriver
 ````
 
+Do a test to make sure everything works by typing:
+```bash
+blobtools host _
+```
+You should see the following message:
+```
+Starting BlobToolKit API on port 8000 (pid: 7837)
+Starting BlobToolKit viewer on port 8080 (pid: 7850)
+Visit http://localhost:8080 to use the interactive BlobToolKit Viewer.
+```
+
+If you are on a laptop or desktop, open any web browser and type `http://localhost:8080` in the url bar. Type `all` in the Search for Datasets section to see a default BlobToolKit plot that is loaded with the installation.
+
 ## Demo on BTK
 ```mermaid
 graph TB
-subgraph CASE 2
-    er(Raw Reads) -->|extracte target reads| aa(Newdenovo assembly)
+  subgraph CASE 2
+    er(Raw Reads) -->|extracted target reads| aa(Newdenovo assembly)
     aa -- <b>Blobtoolkit --> t(Clean Assembly)
    
   end
@@ -42,13 +55,13 @@ subgraph CASE 2
     b -->|filter| EE(target group contigs)
   end
   
-        classDef green fill:#93FF33,stroke:#333,stroke-width:2px
-        classDef blue fill:#00FA9A,stroke:#333,stroke-width:4px
-       
-        class g,a,h green
-        class b,c,d,e,f blue
+classDef green fill:#93FF33,stroke:#333,stroke-width:2px
+classDef blue fill:#00FA9A,stroke:#333,stroke-width:4px
+
+class g,a,h green
+class b,c,d,e,f blue
  ```      
-# Workflow for working on you home made assembly!
+# Workflow for working on your home made assembly!
 ```mermaid
 graph TB
     er(Create a metadata file) --> aa(blobdir)
@@ -68,7 +81,7 @@ graph TB
 ````bash
 mkdir btk
 ````
-All following commands will executed inside this folder
+All following commands should be executed inside this folder
 
 ## Fetch Databases
 
@@ -124,12 +137,8 @@ one (or more) hits file(s), e.g. blastn.out and diamond.blastx.out, Can be downl
 
 ### 1. Create a metadata file
 
-````bash
-vim B_cinera.yaml
+Use any text editor and create a file called `B_cinera.yaml`. Write the following information inside the yaml file.
 ````
-Write the following information inside the yaml file. 
-
-````bash
 assembly:
   alias: B_cinera_112
   record_type: contig
@@ -150,8 +159,7 @@ blastn -db ./nt/nt \
 -out blastn.out
 ````
 
-#### 2.2. The deamond hit file 
-
+#### 2.2. The diamond hit file
 ````bash
 diamond blastx --query assembly.fasta \
 --db ./uniprot/reference_proteomes.dmnd \
@@ -161,9 +169,8 @@ diamond blastx --query assembly.fasta \
 --threads 30 > diamond.blastx.out
 ````
 
-### 3. Create a coverage file(s)
+### 3. Create coverage file(s)
 
-mapping file using minimap
 
 
 ````bash
@@ -180,7 +187,7 @@ Run busco on the genome assemlby
 busco -i assembly.fasta \
 -l helotiales_odb10 -o botrytis -m genome --cpu 30
 ````
-## II. adding input files to blobtoolkit dataset
+## II. Adding input files to blobtoolkit dataset
 
 
 ### 1. adding assembly and a metadata files

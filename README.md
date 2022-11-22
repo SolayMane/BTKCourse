@@ -1,11 +1,24 @@
-# BTKCourse
-## BlobToolKit (v3.3.0) instaltion 
+# BlobToolKit Course
+## BlobToolKit (v3.3.0) installation 
 
+BlobToolKit is written in python and is available as a pip install package. If you are used to installing pip packages, you can just run the following command:
 ````bash
 pip install blobtoolkit
 ````
 
-The blobtools viewc ommand requires firefox or a chromium-based browser to start the interactive viewer or to generate plots from the command line, these can be installed with:
+However, if you have never run pip before, then we recommend using conda to first create a conda environment. Conda environments are easier to keep separate and update and remove without affecting anything else on your computer.
+
+To install conda first, follow the instructions at https://docs.conda.io/en/latest/miniconda.html
+
+Then run the commands:
+```
+conda create -n btk pip python=3.8
+conda activate btk
+pip install blobtoolkit
+```
+Once the commands finish, you should be able to run the command `blobtools` and see an overview.
+
+The blobtools view command requires firefox or a chromium-based browser to start the interactive viewer or to generate plots from the command line, these can be installed with:
 
 ````bash
 conda install -c conda-forge firefox geckodriver

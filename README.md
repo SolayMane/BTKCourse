@@ -67,8 +67,9 @@ graph TB
     er(Create a metadata file) --> aa(blobdir)
     a(Create a hit file) --> aa(blobdir)
     b(Create a coverage file) --> aa(blobdir)
-    c(Create a BUSCO summary file) --> aa(blobdir)
-    aa -->| adding hits| x(View the dataset on blobtool viewer)
+    c(Create a BUSCO summary file) --> aa(blob data sets)
+    aa -->| adding inputs| x(View the dataset on blobtool viewer)
+    x --> Feltering
         classDef green fill:#93FF33,stroke:#333,stroke-width:2px
         classDef blue fill:#00FA9A,stroke:#333,stroke-width:4px
        
@@ -254,7 +255,7 @@ Configuration options for blobtools filter can be considered in three groups:
 
 ### Generating summary data:
 
---summary – Filename for a JSON-format summary of the filtered dataset.
+<code>--summary </code>– Filename for a JSON-format summary of the filtered dataset.
 --summary-rank – Taxonomic level for summary. [Default: phylum]
 --taxrule – Taxrule used when processing hits. [Default: bestsumorder]
 --table – Filename for a tabular output of filtered dataset.

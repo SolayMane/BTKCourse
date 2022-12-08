@@ -1,6 +1,6 @@
 # BlobToolKit Course
 ## BlobToolKit (v3.3.0) installation 
-<base target="_blank">
+
 
 BlobToolKit is written in python and is available as a pip install package. If you are used to installing pip packages, you can just run the following command:
 ````bash
@@ -113,7 +113,7 @@ one assembly file, e.g. assembly.fasta, Can be downloaded from [HERE](https://dr
 one (or more) coverage file(s) e.g. mapping_1.bam, Can be downloaded from [HERE](https://drive.google.com/file/d/1J80GkOGp6Ls0N4BQGmGpBAUXbcvWlsBh/view?usp=share_link)
 one (or more) hits file(s), e.g. blastn.out and diamond.blastx.out, Can be respedctively downloaded from [LINK1](https://drive.google.com/file/d/1liv3ZLAMeeLaXcBIlQKehq-ytuXCZ1-T/view?usp=sharing) & [LINK2](https://drive.google.com/file/d/1loUGYSQMYoBCq3wKM4Q_0LoyozS6-Ir-/view?usp=sharing)
 
-
+<base target="_blank">
 <a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>
 
 

@@ -1,7 +1,6 @@
-<base target="_blank">
-
 # BlobToolKit Course
 ## BlobToolKit (v3.3.0) installation 
+<base target="_blank">
 
 BlobToolKit is written in python and is available as a pip install package. If you are used to installing pip packages, you can just run the following command:
 ````bash

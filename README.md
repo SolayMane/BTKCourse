@@ -113,10 +113,6 @@ one assembly file, e.g. assembly.fasta, Can be downloaded from [HERE](https://dr
 one (or more) coverage file(s) e.g. mapping_1.bam, Can be downloaded from [HERE](https://drive.google.com/file/d/1J80GkOGp6Ls0N4BQGmGpBAUXbcvWlsBh/view?usp=share_link)
 one (or more) hits file(s), e.g. blastn.out and diamond.blastx.out, Can be respedctively downloaded from [LINK1](https://drive.google.com/file/d/1liv3ZLAMeeLaXcBIlQKehq-ytuXCZ1-T/view?usp=sharing) & [LINK2](https://drive.google.com/file/d/1loUGYSQMYoBCq3wKM4Q_0LoyozS6-Ir-/view?usp=sharing)
 
-<base target="_blank">
-<a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>
-
-
 ### 1. Create a metadata file
 
 Use any text editor and create a file called `B_cinera.yaml`. Write the following information inside the yaml file.

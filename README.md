@@ -1,5 +1,3 @@
-<base target="_blank">
-
 # BlobToolKit Course
 ## BlobToolKit (v3.3.0) installation 
 
@@ -113,6 +111,7 @@ metadata file in yaml format to describe the project e. g. B_cinera.yaml, Can be
 one assembly file, e.g. assembly.fasta, Can be downloaded from [HERE](https://drive.google.com/file/d/1ojKTtdYzZEfYra9FuCwSsGSos7JLvgcj/view?usp=sharing).
 one (or more) coverage file(s) e.g. mapping_1.bam, Can be downloaded from [HERE](https://drive.google.com/file/d/1J80GkOGp6Ls0N4BQGmGpBAUXbcvWlsBh/view?usp=share_link)
 one (or more) hits file(s), e.g. blastn.out and diamond.blastx.out, Can be respedctively downloaded from [LINK1](https://drive.google.com/file/d/1liv3ZLAMeeLaXcBIlQKehq-ytuXCZ1-T/view?usp=sharing) & [LINK2](https://drive.google.com/file/d/1loUGYSQMYoBCq3wKM4Q_0LoyozS6-Ir-/view?usp=sharing)
+<a href="http://google.com" target="_blank" rel="noopener">Link</a>
 
 ### 1. Create a metadata file
 

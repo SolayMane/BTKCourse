@@ -1,3 +1,5 @@
+<base target="_blank">
+
 # BlobToolKit Course
 ## BlobToolKit (v3.3.0) installation 
 

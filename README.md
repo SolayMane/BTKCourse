@@ -110,7 +110,7 @@ cd -
 
 metadata file in yaml format to describe the project e. g. B_cinera.yaml, Can be downloaded from <a href="https://drive.google.com/file/d/1-NHpoCcrj4G7d_daytvsl-J-1RN-8wWA/view?usp=sharing">HERE</a>.
 one assembly file, e.g. assembly.fasta, can be downloaded from [HERE]([https://drive.google.com/file/d/1VZE8w8sQM7qHaXcfXqpzAt4mfDgbiJJz/view?usp=sharing)
-one (or more) coverage file(s) e.g. mapping_1.bam, Can be downloaded from [HERE](https://drive.google.com/file/d/1J80GkOGp6Ls0N4BQGmGpBAUXbcvWlsBh/view?usp=share_link)
+one (or more) coverage file(s) e.g. mapping_1.bam, can be downloaded from [HERE](https://drive.google.com/file/d/1J80GkOGp6Ls0N4BQGmGpBAUXbcvWlsBh/view?usp=share_link)
 one (or more) hits file(s), e.g. diamond.blastx.out and blastn.out and can be respedctively downloaded from [LINK](https://drive.google.com/file/d/1dfXMbz8N5MhrZbyYGBHz7PtGTJpT2WSD/view?usp=sharing) & [LINK2](https://drive.google.com/file/d/1jl3xuqfhRsA4KIiXfo6Po0mk2pe0h6dX/view?usp=sharing)
 
 ### 1. Create a metadata file

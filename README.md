@@ -39,21 +39,24 @@ Visit http://localhost:8080 to use the interactive BlobToolKit Viewer.
 If you are on a laptop or desktop, open any web browser and type `http://localhost:8080` in the url bar. Type `all` in the Search for Datasets section to see a default BlobToolKit plot that is loaded with the installation.
 
 
-# Workflow to work on your home-made assembly!
+# Workflow to work on your own genome assembly
+
+BlobToolKit needs a blobdir for each genome assembly - a directory that contains metadata about the genome assembly and several attributes such as GC ratio coverage, BUSCO, etc, for each sequence in the assembly.
+
 ```mermaid
 graph TB
     er(Create a metadata file) --> aa(blobdir)
     a(Create a hit file) --> aa(blobdir)
     b(Create a coverage file) --> aa(blobdir)
-    c(Create a BUSCO summary file) --> aa(blob data sets)
+    c(Create a BUSCO summary file) --> aa(blobdir)
     aa -->| adding inputs| x(View the dataset on blobtool viewer)
-    x --> Feltering
+    x --> Filtering
         classDef green fill:#93FF33,stroke:#333,stroke-width:2px
         classDef blue fill:#00FA9A,stroke:#333,stroke-width:4px
        
         class g,a,h green
         class b,c,d,e,f blue
- ```      
+```      
 
 ## Create a project directory
 
@@ -102,9 +105,7 @@ cd -
 ````
 
 
-## Create blobtoolkit dataset
-
-
+## Create blobtoolkit dataset, also known as blobdir
 
 ## I. Input file requirements
 
